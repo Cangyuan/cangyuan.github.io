@@ -1093,6 +1093,9 @@ pre .javascript .function {
 .header {
   background: transparent;
 }
+.header .site-brand-wrapper .site-meta {
+  background: url("../../../../images/top-bg.jpg");
+}
 .header-inner {
   position: relative;
 }
@@ -1824,7 +1827,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f6ffd9;
+  background: #04bf37;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3255,4 +3258,7 @@ pre .javascript .function {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background: url("../../../../images/bg.jpg") repeat;
 }

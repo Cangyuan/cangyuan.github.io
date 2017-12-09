@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>逆戟·个人博客</title>
+  <title>ORCA</title>
   
-  <subtitle>orca-test</subtitle>
+  <subtitle>逆戟 · 个人博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
