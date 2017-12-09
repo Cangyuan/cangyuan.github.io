@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>逆戟·个人博客</title>
+  
+  <subtitle>orca-test</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-12-09T06:59:59.295Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>orca</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>myfirstblog</title>
+    <link href="http://yoursite.com/2017/12/08/myfirstblog/"/>
+    <id>http://yoursite.com/2017/12/08/myfirstblog/</id>
+    <published>2017-12-08T08:26:21.000Z</published>
+    <updated>2017-12-09T06:59:59.295Z</updated>
+    
+    <content type="html"><![CDATA[<p>web中的http协议 在写HTML的时候，form表单需要通过HTTP协议向服务器提交、查询数据</p><p>客户端通过HTTP协议，向Server发送数据</p><p>主要方式有GET和POST两种（其他的还有PUT、DELETE 和 HEAD）</p><p>HTTP message 格式有两种request和response</p><p>HTTP head 包含一些请求信息，第一行是request line，由方法字段（GET/POST等）、url、HTTP协议版本字段组成</p><p>后继的几行是header line.</p><p>HTTP entity body 在使用GET方法的时候为空，在使用POST方法的时候包含一些表单提交的信息和文件。</p><p>一般请求数据时使用GET（如果不声明method，默认为GET），提交数据使用POST</p><p>GET只能传送少量的数据，而且传送的数据都会显示在url中，安全性不大</p><p>POST可以传送相较于GET更多的数据，上传文件（较多字节）、password（需要较高安全性）的时候需要采用POST的方法</p><p>HTTP head 中的首行时状态行，包含了HTTP版本信息、状态码</p><p>后继几行是header line, 指示了一些服务器版本和HTTP entity body 的信息</p><p>e.g. content-type：text/html 表示body中包含一个html 文件</p><p>一些常见的状态码：</p><p>200 OK :成功打开</p><p>301 Moved Permanently ：请求对象被永久移除</p><p>400 Bad Request ：错误的不能被服务器理解的请求</p><p>401 Not Found ： 请求的对象不在该服务器上</p><p>505 HTTP Version Not Supported ：服务器不支出当前请求message的HTTP版本<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;web中的http协议 在写HTML的时候，form表单需要通过HTTP协议向服务器提交、查询数据&lt;/p&gt;
+&lt;p&gt;客户端通过HTTP协议，向Server发送数据&lt;/p&gt;
+&lt;p&gt;主要方式有GET和POST两种（其他的还有PUT、DELETE 和 HEAD）&lt;/p&gt;
+&lt;p&gt;HTTP message 格式有两种request和response&lt;/p&gt;
+&lt;p&gt;HTTP head 包含一些请求信息，第一行是request line，由方法字段（GET/POST等）、url、HTTP协议版本字段组成&lt;/p&gt;
+&lt;p&gt;后继的几行是header line.&lt;/p&gt;
+&lt;p&gt;HTTP entity body 在使用GET方法的时候为空，在使用POST方法的时候包含一些表单提交的信息和文件。&lt;/p&gt;
+&lt;p&gt;一般请求数据时使用GET（如果不声明method，默认为GET），提交数据使用POST&lt;/p&gt;
+&lt;p&gt;GET只能传送少量的数据，而且传送的数据都会显示在url中，安全性不大&lt;/p&gt;
+&lt;p&gt;POST可以传送相较于GET更多的数据，上传文件（较多字节）、password（需要较高安全性）的时候需要采用POST的方法&lt;/p&gt;
+&lt;p&gt;HTTP head 中的首行时状态行，包含了HTTP版本信息、状态码&lt;/p&gt;
+&lt;p&gt;后继几行是header line, 指示了一些服务器版本和HTTP entity body 的信息&lt;/p&gt;
+&lt;p&gt;e.g. content-type：text/html 表示body中包含一个html 文件&lt;/p&gt;
+&lt;p&gt;一些常见的状态码：&lt;/p&gt;
+&lt;p&gt;200 OK :成功打开&lt;/p&gt;
+&lt;p&gt;301 Moved Permanently ：请求对象被永久移除&lt;/p&gt;
+&lt;p&gt;400 Bad Request ：错误的不能被服务器理解的请求&lt;/p&gt;
+&lt;p&gt;401 Not Found ： 请求的对象不在该服务器上&lt;/p&gt;
+&lt;p&gt;505 HTTP Version Not Supported ：服务器不支出当前请求message的HTTP版本&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Diary" scheme="http://yoursite.com/categories/Diary/"/>
+    
+      <category term="Life" scheme="http://yoursite.com/categories/Diary/Life/"/>
+    
+    
+      <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2017/12/08/hello-world/"/>
+    <id>http://yoursite.com/2017/12/08/hello-world/</id>
+    <published>2017-12-08T07:56:55.456Z</published>
+    <updated>2017-12-09T07:03:18.058Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+      <category term="目录" scheme="http://yoursite.com/categories/%E7%9B%AE%E5%BD%95/"/>
+    
+      <category term="js" scheme="http://yoursite.com/categories/%E7%9B%AE%E5%BD%95/js/"/>
+    
+    
+      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
+    
+  </entry>
+  
+</feed>
