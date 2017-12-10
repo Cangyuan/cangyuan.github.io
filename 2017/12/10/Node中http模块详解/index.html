@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <meta name="baidu-site-verification" content="H1J5y75sN7" />
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node,http," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orca's Notes" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Node中提供了http模块，其中封装了高效的http服务器和http客户端http.server是一个基于事件的HTTP服务器，内部是由c++实现的，接口由JavaScript封装http.request是一个HTTP客户端工具。用户向服务器发送数据。下面就来分别得介绍一下http的服务端和客户端 一、HTTP服务器http.Server实现的，它提供了一套封装级别很低的API，仅仅是流控制和简">
+<meta name="keywords" content="node,http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node中http模块详解">
+<meta property="og:url" content="http://yoursite.com/2017/12/10/Node中http模块详解/index.html">
+<meta property="og:site_name" content="Orca&#39;s Notes">
+<meta property="og:description" content="Node中提供了http模块，其中封装了高效的http服务器和http客户端http.server是一个基于事件的HTTP服务器，内部是由c++实现的，接口由JavaScript封装http.request是一个HTTP客户端工具。用户向服务器发送数据。下面就来分别得介绍一下http的服务端和客户端 一、HTTP服务器http.Server实现的，它提供了一套封装级别很低的API，仅仅是流控制和简">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-10T16:01:16.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node中http模块详解">
+<meta name="twitter:description" content="Node中提供了http模块，其中封装了高效的http服务器和http客户端http.server是一个基于事件的HTTP服务器，内部是由c++实现的，接口由JavaScript封装http.request是一个HTTP客户端工具。用户向服务器发送数据。下面就来分别得介绍一下http的服务端和客户端 一、HTTP服务器http.Server实现的，它提供了一套封装级别很低的API，仅仅是流控制和简">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '2KRW5L0F2U',
+      apiKey: '9f73a698de2f2f5f2d5935433738368d',
+      indexName: 'orca',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/10/Node中http模块详解/"/>
+
+
+
+
+
+  <title>Node中http模块详解 | Orca's Notes</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd3c4d968a66d94776d70eca81622174";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orca's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">逆戟 · 个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/10/Node中http模块详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ORCA">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orca's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node中http模块详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T23:03:45+08:00">
+                2017-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/nodeJs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodeJs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Node中提供了http模块，其中封装了高效的http服务器和http客户端<br>http.server是一个基于事件的HTTP服务器，内部是由c++实现的，接口由JavaScript封装<br>http.request是一个HTTP客户端工具。用户向服务器发送数据。<br>下面就来分别得介绍一下http的服务端和客户端</p>
+<h2 id="一、HTTP服务器"><a href="#一、HTTP服务器" class="headerlink" title="一、HTTP服务器"></a>一、HTTP服务器</h2><p>http.Server实现的，它提供了一套封装级别很低的API，仅仅是流控制和简单的解析，所有的高层功能都需要通过它的接口，就像在前面的文章《Node入门必须知道的事情》中创建的服务器一样是特别的简单的。<br>下面分别来讲一个有关http服务器的几个事件</p>
+<h3 id="1-http-server事件"><a href="#1-http-server事件" class="headerlink" title="1.http.server事件"></a>1.http.server事件</h3><p>http.server是一个基于事件的HTTP服务器，所有的请求都被封装到独立的事件当中，我们只需要对他的事件编写相应的行数就可以实现HTTP服务器的所有功能，它继承自EventEmitter,提供了以下的事件：</p>
+<ul>
+<li><p>request：当客户端请求到来的时候，该事件被触发，提供两个参数request和response，分别是http.ServerRequest和http.ServerResponse表示请求和响应的信息。 </p>
+</li>
+<li><p>connection：当TCP建立连接的时候，该事件被触发，提供了一个参数socket，为net.socket的实例(底层协议对象) </p>
+</li>
+<li><p>close：当服务器关闭的时候会被触发 </p>
+</li>
+<li><p>除此之外还有checkContinue、upgrade、clientError等事件 </p>
+</li>
+</ul>
+<p>我们最常用的还是request事件，http也给这个事件提供了一个捷径：http.createServer([requestListener])<br>下面我们来简单的看一下两个案例：<br>第一个是使用request事件的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const http = require(<span class="string">'http'</span>);</span><br><span class="line">const net  = require(<span class="string">'net'</span>);</span><br><span class="line">const util = require(<span class="string">'util'</span>);</span><br><span class="line">//随便定义的一个函数，下面会用到</span><br><span class="line"><span class="keyword">function</span>  <span class="function"><span class="title">a</span></span>()&#123;</span><br><span class="line">    console.log(<span class="string">"dajiahao"</span>);</span><br><span class="line">&#125;</span><br><span class="line">var server = new http.Server();</span><br><span class="line">server.on(<span class="string">'request'</span>,(req,res)=&gt;&#123;</span><br><span class="line">    console.log(req.url);</span><br><span class="line">    //设置应答头信息</span><br><span class="line">    res.writeHead(200,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/html'</span>&#125;);</span><br><span class="line">    res.write(<span class="string">'hello we are family&lt;br&gt;'</span>);</span><br><span class="line">    res.end(<span class="string">'server already end\n'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">//显示了三次这也证明了TCP的三次握手</span><br><span class="line">server.on(<span class="string">'connection'</span>,()=&gt;&#123;</span><br><span class="line">    a();</span><br><span class="line">&#125;);</span><br><span class="line">server.on(<span class="string">'close'</span>,()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'server will close'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">//关闭服务为了触发close事件</span><br><span class="line">server.close();</span><br><span class="line">server.listen(8080);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>下面的案例使用http的给的捷径http.createServer制作的代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const http = require(<span class="string">'http'</span>);</span><br><span class="line">const net  = require(<span class="string">'net'</span>);</span><br><span class="line">const util = require(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http.createServer(<span class="keyword">function</span>(req,res)&#123;</span><br><span class="line">    res.writeHead(404,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;)</span><br><span class="line">    res.write(<span class="string">"we are is content"</span>);</span><br><span class="line">    res.end(<span class="string">"fdsa"</span>);</span><br><span class="line"></span><br><span class="line">&#125;).listen(3000);</span><br></pre></td></tr></table></figure>
+<h3 id="2-http-ServerRequset请求信息"><a href="#2-http-ServerRequset请求信息" class="headerlink" title="2.http.ServerRequset请求信息"></a>2.http.ServerRequset请求信息</h3><p>我们都知道HTTP请求分为两部分：请求头和请求体，如果请求的内容少的话就直接在请求头协议完成之后立即读取，请求体可能相对较长一点，需要一定的时间传输。因此提供了三个事件用于控制请求体传输. </p>
+<ul>
+<li><p>data：当请求体数据到来时，该事件被触发，该事件一共一个参数chunk，表示接受到的数据。 </p>
+</li>
+<li><p>end：当请求体数据传输完成时，该事件被触发，此后将不会再有数据到来。 </p>
+</li>
+<li><p>close：用户当前请求结束时，该事件被触发，不同于end，如果用户强制终止了传输，也会触发close </p>
+</li>
+</ul>
+<p>ServerRequest的属性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ccomplete</td>
+<td style="text-align:center">客户端请求是否已经发送完成</td>
+</tr>
+<tr>
+<td style="text-align:center">httpVersion</td>
+<td style="text-align:center">HTTP协议版本，通常是1.0或1.1</td>
+</tr>
+<tr>
+<td style="text-align:center">method</td>
+<td style="text-align:center">HTTP请求方法，如：GET,POST</td>
+</tr>
+<tr>
+<td style="text-align:center">url</td>
+<td style="text-align:center">原始的请求路径</td>
+</tr>
+<tr>
+<td style="text-align:center">headers</td>
+<td style="text-align:center">HTTP请求头</td>
+</tr>
+<tr>
+<td style="text-align:center">trailers</td>
+<td style="text-align:center">HTTP请求尾(不常见)</td>
+</tr>
+<tr>
+<td style="text-align:center">connection</td>
+<td style="text-align:center">当前HTTP连接套接字，为net.Socket的实例</td>
+</tr>
+<tr>
+<td style="text-align:center">socket</td>
+<td style="text-align:center">connection属性的别名</td>
+</tr>
+<tr>
+<td style="text-align:center">client</td>
+<td style="text-align:center">client属性的别名</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="keyword">function</span>(req,res)&#123;</span><br><span class="line">    console.log(req.httpVersion);</span><br><span class="line">    //console.log(req.socket);</span><br><span class="line">    console.log(req.headers);</span><br><span class="line">    console.log(req.method);</span><br><span class="line">    res.writeHead(404,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;)</span><br><span class="line">    res.write(<span class="string">"we are is content"</span>);</span><br><span class="line">    res.end(<span class="string">"fdsa"</span>);</span><br><span class="line">&#125;).listen(8080);</span><br></pre></td></tr></table></figure>
+<h3 id="3-获取GET请求内容"><a href="#3-获取GET请求内容" class="headerlink" title="3.获取GET请求内容"></a>3.获取GET请求内容</h3><p>由于GET请求直接被嵌入在路径中,URL完整的请求路径，包括了?后面的部分，因此你可以手动解析后面的内容作为GET的参数，Nodejs的url模块中的parse函数提供了这个功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const http = require(<span class="string">'http'</span>);</span><br><span class="line">const net  = require(<span class="string">'net'</span>);</span><br><span class="line">const url  = require(<span class="string">'url'</span>);</span><br><span class="line">const util = require(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer((req,res)=&gt;&#123;</span><br><span class="line">    res.write(util.inspect(url.parse(req.url,<span class="literal">true</span>)));</span><br><span class="line">    //利用url模块去解析客户端发送过来的URL</span><br><span class="line">    res.end(util.inspect(url.parse(req.url,<span class="literal">false</span>)));</span><br><span class="line">&#125;).listen(8080);</span><br></pre></td></tr></table></figure>
+<h3 id="4-获得POST请求内容"><a href="#4-获得POST请求内容" class="headerlink" title="4.获得POST请求内容"></a>4.获得POST请求内容</h3><p>POST请求的内容全部都在请求体中，http.ServerRequest并没有一个属性内容为请求体，原因是等待请求体传输可能是一件耗时的工作。譬如上传文件。恶意的POST请求会大大消耗服务器的资源。所以Nodejs是不会解析请求体，当你需要的时候，需要手动来做。<br>简单的看一下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const http = require(<span class="string">'http'</span>);</span><br><span class="line">const net  = require(<span class="string">'net'</span>);</span><br><span class="line">const url  = require(<span class="string">'url'</span>);</span><br><span class="line">const util = require(<span class="string">'util'</span>);</span><br><span class="line">//querystring用于处理URL中的查询字符串</span><br><span class="line">const querystring = require(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer((req,res)=&gt;&#123;</span><br><span class="line">    var posr = <span class="string">''</span>;</span><br><span class="line">    req.on(<span class="string">'data'</span>,(chunk)=&gt;&#123;</span><br><span class="line">        post+=chunk;</span><br><span class="line">    &#125;);</span><br><span class="line">    res,on(<span class="string">'end'</span>,()=&gt;&#123;</span><br><span class="line">        //将字符串变为json的格式</span><br><span class="line">        post  =  querystring.parse(post);</span><br><span class="line">        //向前端返回字符串</span><br><span class="line">        res.end(util.inspect(post));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="5-http-ServerResponse返回客户端信息"><a href="#5-http-ServerResponse返回客户端信息" class="headerlink" title="5.http.ServerResponse返回客户端信息"></a>5.http.ServerResponse返回客户端信息</h2><p>决定了用户最终能到的结果，它是由http.Server的request事件发送的，作为第二个参数传递。一般为response或res<br>主要的三个函数：<br>response.writeHead(statusCode,[headers])：向请求的客户端发送响应头。<br>statusCode是HTTP的状态码，如200为成功，404未找到等。<br>headers是一个类似关联数组的对象，表示响应头的每个属性。<br>response.write(data,[encoding]) 向请求客户端发送相应内容，data是buffer或字符串，encoding为编码<br>response.end([data],[encoding]) 结束响应，告知用户所有发送已经完成，当所有要返回的内容发送完毕，该函数必须被调用一次，如果不调用，客户端永远处于等待状态</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="ORCA 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/10/Git之解决冲突/" rel="next" title="Git之解决冲突">
+                <i class="fa fa-chevron-left"></i> Git之解决冲突
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/10/node-js之path模块解析/" rel="prev" title="node.js之path模块">
+                node.js之path模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.jpg"
+                alt="ORCA" />
+            
+              <p class="site-author-name" itemprop="name">ORCA</p>
+              <p class="site-description motion-element" itemprop="description">orca  女，出生于 中国·河南  喜欢做设计、界面设计、用户体验、前端开发、互联网。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cangyuan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/cangyuan" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、HTTP服务器"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;HTTP&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x4E00;&#x3001;HTTP&#x670D;&#x52A1;&#x5668;"></a>&#x4E00;&#x3001;HTTP&#x670D;&#x52A1;&#x5668;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-http-server事件"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-http-server&#x4E8B;&#x4EF6;" class="headerlink" title="1.http.server&#x4E8B;&#x4EF6;"></a>1.http.server&#x4E8B;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-http-ServerRequset请求信息"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#2-http-ServerRequset&#x8BF7;&#x6C42;&#x4FE1;&#x606F;" class="headerlink" title="2.http.ServerRequset&#x8BF7;&#x6C42;&#x4FE1;&#x606F;"></a>2.http.ServerRequset&#x8BF7;&#x6C42;&#x4FE1;&#x606F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-获取GET请求内容"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#3-&#x83B7;&#x53D6;GET&#x8BF7;&#x6C42;&#x5185;&#x5BB9;" class="headerlink" title="3.&#x83B7;&#x53D6;GET&#x8BF7;&#x6C42;&#x5185;&#x5BB9;"></a>3.&#x83B7;&#x53D6;GET&#x8BF7;&#x6C42;&#x5185;&#x5BB9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-获得POST请求内容"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#4-&#x83B7;&#x5F97;POST&#x8BF7;&#x6C42;&#x5185;&#x5BB9;" class="headerlink" title="4.&#x83B7;&#x5F97;POST&#x8BF7;&#x6C42;&#x5185;&#x5BB9;"></a>4.&#x83B7;&#x5F97;POST&#x8BF7;&#x6C42;&#x5185;&#x5BB9;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-http-ServerResponse返回客户端信息"><span class="nav-number">2.</span> <span class="nav-text"><a href="#5-http-ServerResponse&#x8FD4;&#x56DE;&#x5BA2;&#x6237;&#x7AEF;&#x4FE1;&#x606F;" class="headerlink" title="5.http.ServerResponse&#x8FD4;&#x56DE;&#x5BA2;&#x6237;&#x7AEF;&#x4FE1;&#x606F;"></a>5.http.ServerResponse&#x8FD4;&#x56DE;&#x5BA2;&#x6237;&#x7AEF;&#x4FE1;&#x606F;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-envira"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ORCA</span>
+
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
