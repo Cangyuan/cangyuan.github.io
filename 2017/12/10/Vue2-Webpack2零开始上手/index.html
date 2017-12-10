@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <meta name="baidu-site-verification" content="H1J5y75sN7" />
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node,npm,js,vue,webpack," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orca's Notes" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前端发展历程 1.该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。">
+<meta name="keywords" content="node,npm,js,vue,webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2+Webpack2零开始上手">
+<meta property="og:url" content="http://yoursite.com/2017/12/10/Vue2-Webpack2零开始上手/index.html">
+<meta property="og:site_name" content="Orca&#39;s Notes">
+<meta property="og:description" content="前端发展历程 1.该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/imgs/vue-02.png">
+<meta property="og:image" content="http://yoursite.com/imgs/vue-03.png">
+<meta property="og:image" content="http://yoursite.com/imgs/vue-04.png">
+<meta property="og:image" content="http://yoursite.com/imgs/webpack-01.png">
+<meta property="og:image" content="http://yoursite.com/imgs/webpack-02.png">
+<meta property="og:image" content="http://yoursite.com/imgs/vue-05.png">
+<meta property="og:updated_time" content="2017-12-10T14:02:53.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue2+Webpack2零开始上手">
+<meta name="twitter:description" content="前端发展历程 1.该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。">
+<meta name="twitter:image" content="http://yoursite.com/imgs/vue-02.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '2KRW5L0F2U',
+      apiKey: '9f73a698de2f2f5f2d5935433738368d',
+      indexName: 'orca',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/10/Vue2-Webpack2零开始上手/"/>
+
+
+
+
+
+  <title>Vue2+Webpack2零开始上手 | Orca's Notes</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd3c4d968a66d94776d70eca81622174";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orca's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">逆戟 · 个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/10/Vue2-Webpack2零开始上手/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ORCA">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orca's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue2+Webpack2零开始上手</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T21:38:22+08:00">
+                2017-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前端发展历程"><a href="#前端发展历程" class="headerlink" title="前端发展历程"></a>前端发展历程</h2><p><img src="/imgs/vue-02.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
+<h3 id="1-该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。"><a href="#1-该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。" class="headerlink" title="1.该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。"></a>1.该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。</h3><p><img src="/imgs/vue-03.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
+<a id="more"></a>
+<h3 id="2-该阶段，html，css和js以静态文件数据存在，前端工程师就基本有活干，同时后端工程师也开始减负。"><a href="#2-该阶段，html，css和js以静态文件数据存在，前端工程师就基本有活干，同时后端工程师也开始减负。" class="headerlink" title="2.该阶段，html，css和js以静态文件数据存在，前端工程师就基本有活干，同时后端工程师也开始减负。"></a>2.该阶段，html，css和js以静态文件数据存在，前端工程师就基本有活干，同时后端工程师也开始减负。</h3><p><img src="/imgs/vue-04.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
+<h3 id="3-ajax的发明，让js担当更多的责任"><a href="#3-ajax的发明，让js担当更多的责任" class="headerlink" title="3: ajax的发明，让js担当更多的责任"></a>3: ajax的发明，让js担当更多的责任</h3><p>iv: js的模块化规范开始广泛讨论，有AMD，CMD两种，AMD以RequireJS领头，CMD以SeaJS领头（同时node的发明，js开始进入后端开发领域，以commonJS为规范）</p>
+<p>简介<br>随着js的发展或互联网产品用户体验概念的深入，前端越来越受程序员及公司们关注。组件化的系统架构思想，本以往所有的系统架构思想都只会出现在后端，可当下，前端工作或系统越来越庞大，越显臃肿。而组件化中，首当其冲的是angularJS，reactJs和vue。而angularJS对我来说，它具备着很多后端开发的思想，带进了很多新概念，入门有点难度，所以，我不太建议；而reactJS稍微有了解，但是render部分似乎并没有vue做得简单，明了。所以，本文之后介绍vue2+webpack2的组件开发。</p>
+<h2 id="VueJS"><a href="#VueJS" class="headerlink" title="VueJS"></a>VueJS</h2><p>VueJS是构建用户界面的js框架。简答使用，可以直接下载官方的vue.js库文件，类似jquery库一样，放到html中去，使用类似var vue=new Vue() 语法即可使用vue框架的特性，如双向绑定。单单双向绑定就很值得大家去尝试，极大提高前端的开发效率，甚至我对我以往html的拼接方式，jquery获取各个输入框值等这些做法不忍回首。<br>详情可见：<a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">介绍-Vue.js</a></p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 loader 的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。</p>
+<p><img src="/imgs/webpack-01.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
+<p>上述图片也许不太容易理解，我根据目前自己的理解做了一张图解，如下：</p>
+<p><img src="/imgs/webpack-02.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>我极力推荐Vue-cli脚手架方式来初始化项目，因为当你发现你上网找到的文章例子运行不了时候（可能vue或webpack版本不符或loaders没加载完全），那已经浪费不少时间。具体步骤可见：vue2 webpack2 脚手架 详解使用vue脚手架工具搭建vue-webpack项目</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><div class="note danger"><p>eslint： 通过文章中的操作，已经可以运行vue2+webpack2的项目，但是如果修改里面某一行或增加一个简单v-on:click操作，似乎困难重重。我简单增加了一个操作，本以为会成功运行，但是没想到会出现类似编译错误问题。后来才发现，原来忽视了eslint，至于eslint是什么，大家可点击查看：ESLint入坑</p></div>
+<h2 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h2><p>在整个前端系统来说，组件间通信肯定是必不可少的一部分。如搜索页面，顶部是搜索框的组件，下面是搜索到的内容列表组件；再如一个表格内容中，有针对某个条目进行删除，删除后表格头部更新条目数量。<br>在组件通信中，父组件-&gt;子组件通过属性参数进行传递，而子组件-&gt;父组件则通过事件冒泡进行通知。如下图：</p>
+<p><img src="/imgs/vue-05.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
+<h3 id="父组件代码："><a href="#父组件代码：" class="headerlink" title="父组件代码："></a>父组件代码：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=<span class="string">"hello"</span>&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; msg &#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"msg"</span> placeholder=<span class="string">"请输入信息"</span> /&gt;</span><br><span class="line">    &lt;h2 @click=<span class="string">"show"</span>&gt;Essential Links&lt;/h2&gt;</span><br><span class="line">    &lt;Child :msg=<span class="string">"msg"</span> @childmessage=<span class="string">"receiveMessage"</span>&gt;&lt;/Child&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Child from <span class="string">'./Child'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  name: <span class="string">'hello'</span>,</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'Welcome to My Vue.js App'</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="function"><span class="title">show</span></span>() &#123;</span><br><span class="line">      alert(this.msg);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">receiveMessage</span></span>() &#123;</span><br><span class="line">      console.log(<span class="string">'我是父组件，我收到信息了'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Child: Child</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="子组件代码："><a href="#子组件代码：" class="headerlink" title="子组件代码："></a>子组件代码：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li v-for=<span class="string">"item in list"</span>&gt;&lt;a v-bind:href=<span class="string">"item.url"</span> target=<span class="string">"_blank"</span>&gt;&#123;&#123;item.name&#125;&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li v-show=<span class="string">"msg"</span>&gt;&#123;&#123;msg&#125;&#125;&lt;/li&gt;</span><br><span class="line">      &lt;li @click=<span class="string">"send()"</span>&gt;发送消息给父组件&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import data from <span class="string">'@/../static/data'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  name: <span class="string">'child'</span>,</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      list: data.links</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="function"><span class="title">send</span></span>() &#123;</span><br><span class="line">      this.<span class="variable">$emit</span>(<span class="string">'childmessage'</span>, <span class="string">'消息内容'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    msg: String</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>以上解决了父组件-&gt;子组件的消息传递，子组件-&gt;父组件的事件传递</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="ORCA 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/npm/" rel="tag"># npm</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/10/NPM一些常用命令/" rel="next" title="NPM一些常用命令">
+                <i class="fa fa-chevron-left"></i> NPM一些常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/10/vue之vue-source插件/" rel="prev" title="vue之vue-source插件">
+                vue之vue-source插件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/logo.jpg"
+                alt="ORCA" />
+            
+              <p class="site-author-name" itemprop="name">ORCA</p>
+              <p class="site-description motion-element" itemprop="description">orca  女，出生于 中国·河南  喜欢做设计、界面设计、用户体验、前端开发、互联网。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cangyuan" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/cangyuan" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端发展历程"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x7AEF;&#x53D1;&#x5C55;&#x5386;&#x7A0B;" class="headerlink" title="&#x524D;&#x7AEF;&#x53D1;&#x5C55;&#x5386;&#x7A0B;"></a>&#x524D;&#x7AEF;&#x53D1;&#x5C55;&#x5386;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-该阶段，用户访问内容，全部由服务器渲染输出，在这阶段，前端工程师基本也就没什么事情，重要性跟后端工程师没法拼。"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-&#x8BE5;&#x9636;&#x6BB5;&#xFF0C;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x5185;&#x5BB9;&#xFF0C;&#x5168;&#x90E8;&#x7531;&#x670D;&#x52A1;&#x5668;&#x6E32;&#x67D3;&#x8F93;&#x51FA;&#xFF0C;&#x5728;&#x8FD9;&#x9636;&#x6BB5;&#xFF0C;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x57FA;&#x672C;&#x4E5F;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#xFF0C;&#x91CD;&#x8981;&#x6027;&#x8DDF;&#x540E;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x6CA1;&#x6CD5;&#x62FC;&#x3002;" class="headerlink" title="1.&#x8BE5;&#x9636;&#x6BB5;&#xFF0C;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x5185;&#x5BB9;&#xFF0C;&#x5168;&#x90E8;&#x7531;&#x670D;&#x52A1;&#x5668;&#x6E32;&#x67D3;&#x8F93;&#x51FA;&#xFF0C;&#x5728;&#x8FD9;&#x9636;&#x6BB5;&#xFF0C;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x57FA;&#x672C;&#x4E5F;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#xFF0C;&#x91CD;&#x8981;&#x6027;&#x8DDF;&#x540E;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x6CA1;&#x6CD5;&#x62FC;&#x3002;"></a>1.&#x8BE5;&#x9636;&#x6BB5;&#xFF0C;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x5185;&#x5BB9;&#xFF0C;&#x5168;&#x90E8;&#x7531;&#x670D;&#x52A1;&#x5668;&#x6E32;&#x67D3;&#x8F93;&#x51FA;&#xFF0C;&#x5728;&#x8FD9;&#x9636;&#x6BB5;&#xFF0C;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x57FA;&#x672C;&#x4E5F;&#x5C31;&#x6CA1;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#xFF0C;&#x91CD;&#x8981;&#x6027;&#x8DDF;&#x540E;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x6CA1;&#x6CD5;&#x62FC;&#x3002;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-该阶段，html，css和js以静态文件数据存在，前端工程师就基本有活干，同时后端工程师也开始减负。"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#2-&#x8BE5;&#x9636;&#x6BB5;&#xFF0C;html&#xFF0C;css&#x548C;js&#x4EE5;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x5B58;&#x5728;&#xFF0C;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x5C31;&#x57FA;&#x672C;&#x6709;&#x6D3B;&#x5E72;&#xFF0C;&#x540C;&#x65F6;&#x540E;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x4E5F;&#x5F00;&#x59CB;&#x51CF;&#x8D1F;&#x3002;" class="headerlink" title="2.&#x8BE5;&#x9636;&#x6BB5;&#xFF0C;html&#xFF0C;css&#x548C;js&#x4EE5;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x5B58;&#x5728;&#xFF0C;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x5C31;&#x57FA;&#x672C;&#x6709;&#x6D3B;&#x5E72;&#xFF0C;&#x540C;&#x65F6;&#x540E;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x4E5F;&#x5F00;&#x59CB;&#x51CF;&#x8D1F;&#x3002;"></a>2.&#x8BE5;&#x9636;&#x6BB5;&#xFF0C;html&#xFF0C;css&#x548C;js&#x4EE5;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x5B58;&#x5728;&#xFF0C;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x5C31;&#x57FA;&#x672C;&#x6709;&#x6D3B;&#x5E72;&#xFF0C;&#x540C;&#x65F6;&#x540E;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E08;&#x4E5F;&#x5F00;&#x59CB;&#x51CF;&#x8D1F;&#x3002;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ajax的发明，让js担当更多的责任"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#3-ajax&#x7684;&#x53D1;&#x660E;&#xFF0C;&#x8BA9;js&#x62C5;&#x5F53;&#x66F4;&#x591A;&#x7684;&#x8D23;&#x4EFB;" class="headerlink" title="3: ajax&#x7684;&#x53D1;&#x660E;&#xFF0C;&#x8BA9;js&#x62C5;&#x5F53;&#x66F4;&#x591A;&#x7684;&#x8D23;&#x4EFB;"></a>3: ajax&#x7684;&#x53D1;&#x660E;&#xFF0C;&#x8BA9;js&#x62C5;&#x5F53;&#x66F4;&#x591A;&#x7684;&#x8D23;&#x4EFB;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VueJS"><span class="nav-number">2.</span> <span class="nav-text"><a href="#VueJS" class="headerlink" title="VueJS"></a>VueJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack"><span class="nav-number">3.</span> <span class="nav-text"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x73AF;&#x5883;&#x642D;&#x5EFA;" class="headerlink" title="&#x73AF;&#x5883;&#x642D;&#x5EFA;"></a>&#x73AF;&#x5883;&#x642D;&#x5EFA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">5.</span> <span class="nav-text"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件间通信"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x7EC4;&#x4EF6;&#x95F4;&#x901A;&#x4FE1;" class="headerlink" title="&#x7EC4;&#x4EF6;&#x95F4;&#x901A;&#x4FE1;"></a>&#x7EC4;&#x4EF6;&#x95F4;&#x901A;&#x4FE1;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父组件代码："><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#&#x7236;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#xFF1A;" class="headerlink" title="&#x7236;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#xFF1A;"></a>&#x7236;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#xFF1A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子组件代码："><span class="nav-number">6.2.</span> <span class="nav-text"><a href="#&#x5B50;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#xFF1A;" class="headerlink" title="&#x5B50;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#xFF1A;"></a>&#x5B50;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#xFF1A;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-envira"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ORCA</span>
+
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
