@@ -251,7 +251,7 @@
     <link href="http://yoursite.com/2017/12/10/git-project/"/>
     <id>http://yoursite.com/2017/12/10/git-project/</id>
     <published>2017-12-10T12:03:58.000Z</published>
-    <updated>2017-12-11T08:08:03.031Z</updated>
+    <updated>2017-12-11T09:10:26.204Z</updated>
     
     <content type="html"><![CDATA[<h2 id="关于版本控制"><a href="#关于版本控制" class="headerlink" title="关于版本控制"></a>关于版本控制</h2><p>提到版本控制，那么我会想到的是 SVN 以及这里要说的 Git。那什么是版本控制呢？版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p><h2 id="Git基础-三种状态"><a href="#Git基础-三种状态" class="headerlink" title="Git基础-三种状态"></a>Git基础-三种状态</h2><p>Git 有三种状态，你的文件可能处于其中之一：已提交（committed）、已修改（modified）和已暂存（staged）。</p><p><img src="/imgs/git-01.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p><a id="more"></a><p>Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。</p><p>工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。</p><p>暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作“索引”，不过一般说法还是叫暂存区域。</p><h3 id="基本的-Git-工作流程如下："><a href="#基本的-Git-工作流程如下：" class="headerlink" title="基本的 Git 工作流程如下："></a>基本的 Git 工作流程如下：</h3><p>1.在工作目录中修改文件。<br>2.暂存文件，将文件的快照放入暂存区域。<br>3.提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</p><h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>Mac: brew install git</p><p>Linux(Debian) : apt-get install git-core</p><p>Linux(Fedora) : yum install git-core</p><p>Windows : 下载安装 Git</p><p>配置:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"your name"</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.email <span class="string">"youremail@email.com"</span></span><br></pre></td></tr></table></figure><p>使用 –global 可以使该命令只执行一次。</p><p>你可以通过如下的命令来查看你的配置信息：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br><span class="line">user.email=cangyuan@qq.com</span><br><span class="line">user.name=cangyuan</span><br><span class="line">color.status=auto</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>你可以通过输入 $ git config <key> 来查看某一项的配置</key></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> git config user.name</span><br><span class="line">cangyuan</span><br></pre></td></tr></table></figure><h2 id="获取帮助"><a href="#获取帮助" class="headerlink" title="获取帮助"></a>获取帮助</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">help</span></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -264,6 +264,8 @@
     </summary>
     
       <category term="版本管理" scheme="http://yoursite.com/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="安装" scheme="http://yoursite.com/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/%E5%AE%89%E8%A3%85/"/>
     
     
       <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
