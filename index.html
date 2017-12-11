@@ -644,8 +644,7 @@
 <li><p>除此之外还有checkContinue、upgrade、clientError等事件 </p>
 </li>
 </ul>
-<p>我们最常用的还是request事件，http也给这个事件提供了一个捷径：http.createServer([requestListener])<br>下面我们来简单的看一下两个案例：<br>第一个是使用request事件的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const http = require(<span class="string">'http'</span>);</span><br><span class="line">const net  = require(<span class="string">'net'</span>);</span><br><span class="line">const util = require(<span class="string">'util'</span>);</span><br><span class="line">//随便定义的一个函数，下面会用到</span><br><span class="line"><span class="keyword">function</span>  <span class="function"><span class="title">a</span></span>()&#123;</span><br><span class="line">    console.log(<span class="string">"dajiahao"</span>);</span><br><span class="line">&#125;</span><br><span class="line">var server = new http.Server();</span><br><span class="line">server.on(<span class="string">'request'</span>,(req,res)=&gt;&#123;</span><br><span class="line">    console.log(req.url);</span><br><span class="line">    //设置应答头信息</span><br><span class="line">    res.writeHead(200,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/html'</span>&#125;);</span><br><span class="line">    res.write(<span class="string">'hello we are family&lt;br&gt;'</span>);</span><br><span class="line">    res.end(<span class="string">'server already end\n'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">//显示了三次这也证明了TCP的三次握手</span><br><span class="line">server.on(<span class="string">'connection'</span>,()=&gt;&#123;</span><br><span class="line">    a();</span><br><span class="line">&#125;);</span><br><span class="line">server.on(<span class="string">'close'</span>,()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'server will close'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">//关闭服务为了触发close事件</span><br><span class="line">server.close();</span><br><span class="line">server.listen(8080);</span><br></pre></td></tr></table></figure>
+<p>我们最常用的还是request事件，http也给这个事件提供了一个捷径：http.createServer([requestListener])<br>下面我们来简单的看一下两个案例： </p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/10/Node中http模块详解/#more" rel="contents">
@@ -1467,14 +1466,6 @@
           <p>首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：</p>
 <p><img src="/imgs/git-02.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
 <p>在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：</p>
-<p><img src="/imgs/git-03.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
-<p>目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</p>
-<p>现在，我们根据GitHub的提示，在本地的learngit仓库下运行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:yourname/learngit.git</span><br></pre></td></tr></table></figure>
-<p>请千万注意，把上面的michaelliao替换成你自己的GitHub账户名，否则，你在本地关联的就是我的远程库，关联没有问题，但是你以后推送是推不上去的，因为你的SSH Key公钥不在我的账户列表中。</p>
-<p>添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。</p>
-<p>下一步，就可以把本地库的所有内容推送到远程库上：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br><span class="line">Counting objects: 19, <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (19/19), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (19/19), 13.73 KiB, <span class="keyword">done</span>.</span><br><span class="line">Total 23 (delta 6), reused 0 (delta 0)</span><br><span class="line">To git@github.com:michaelliao/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch master <span class="built_in">set</span> up to track remote branch master from origin.</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/10/git添加远程库github/#more" rel="contents">
@@ -1623,9 +1614,6 @@
           <h2 id="关于版本控制"><a href="#关于版本控制" class="headerlink" title="关于版本控制"></a>关于版本控制</h2><p>提到版本控制，那么我会想到的是 SVN 以及这里要说的 Git。那什么是版本控制呢？版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
 <h2 id="Git基础-三种状态"><a href="#Git基础-三种状态" class="headerlink" title="Git基础-三种状态"></a>Git基础-三种状态</h2><p>Git 有三种状态，你的文件可能处于其中之一：已提交（committed）、已修改（modified）和已暂存（staged）。</p>
 <p><img src="/imgs/git-01.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
-<p>Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。</p>
-<p>工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。</p>
-<p>暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作“索引”，不过一般说法还是叫暂存区域。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/10/git-project/#more" rel="contents">

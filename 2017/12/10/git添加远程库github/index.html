@@ -124,21 +124,21 @@
 
 
 
-<meta name="description" content="首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：  目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓">
+<meta name="description" content="首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：">
 <meta name="keywords" content="Git,版本管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git添加远程库github">
 <meta property="og:url" content="http://yoursite.com/2017/12/10/git添加远程库github/index.html">
 <meta property="og:site_name" content="Orca&#39;s Notes">
-<meta property="og:description" content="首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：  目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓">
+<meta property="og:description" content="首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/imgs/git-02.png">
 <meta property="og:image" content="http://yoursite.com/imgs/git-03.png">
 <meta property="og:image" content="http://yoursite.com/imgs/git-03.png">
-<meta property="og:updated_time" content="2017-12-10T12:42:53.166Z">
+<meta property="og:updated_time" content="2017-12-11T08:07:32.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git添加远程库github">
-<meta name="twitter:description" content="首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：  目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓">
+<meta name="twitter:description" content="首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：">
 <meta name="twitter:image" content="http://yoursite.com/imgs/git-02.png">
 
 
@@ -452,6 +452,7 @@
         <p>首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：</p>
 <p><img src="/imgs/git-02.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
 <p>在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：</p>
+<a id="more"></a>
 <p><img src="/imgs/git-03.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p>
 <p>目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</p>
 <p>现在，我们根据GitHub的提示，在本地的learngit仓库下运行命令：</p>
@@ -460,7 +461,6 @@
 <p>添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。</p>
 <p>下一步，就可以把本地库的所有内容推送到远程库上：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br><span class="line">Counting objects: 19, <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (19/19), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (19/19), 13.73 KiB, <span class="keyword">done</span>.</span><br><span class="line">Total 23 (delta 6), reused 0 (delta 0)</span><br><span class="line">To git@github.com:michaelliao/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch master <span class="built_in">set</span> up to track remote branch master from origin.</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <p>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。</p>
 <p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
 <p>推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样：</p>
