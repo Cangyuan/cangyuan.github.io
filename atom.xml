@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-11T09:25:46.118Z</updated>
+  <updated>2017-12-17T14:48:45.693Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue+webpack为生产环境和发布环境配置不同的接口地址</title>
+    <link href="http://yoursite.com/2017/12/17/vue-webpack%E4%B8%BA%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8F%91%E5%B8%83%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80/"/>
+    <id>http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/</id>
+    <published>2017-12-17T14:36:31.000Z</published>
+    <updated>2017-12-17T14:48:45.693Z</updated>
+    
+    <content type="html"><![CDATA[<p>#第一步，分别设置不同的接口地址<br>首先，我们分别找到下面的文件：</p><div class="note info"><p>/config/dev.env.js<br>/config/prod.env.js</p></div><p>我们打开dev.en.js文件。代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>然后，我们在NODE_ENV下面增加一项，代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//192.168.1.8/api"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>然后，我们编辑prod.env.js文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//www.baidu.com/api"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>#第二部，在代码中调用设置好的参数</p><p>打开src/config/api.js文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = <span class="string">'https://cnodejs.org/api/v1'</span></span><br></pre></td></tr></table></figure><p>修改为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = process.env.API_ROOT</span><br></pre></td></tr></table></figure><p>配置完成之后，运行下列代码,跑测试接口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure><p>然后运行下列代码，打包项目，打包后跑的是服务器正式接口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;#第一步，分别设置不同的接口地址&lt;br&gt;首先，我们分别找到下面的文件：&lt;/p&gt;
+&lt;div class=&quot;note info&quot;&gt;&lt;p&gt;/config/dev.env.js&lt;br&gt;/config/prod.env.js&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;我们打开dev.en.js文件。
+      
+    
+    </summary>
+    
+      <category term="Vue" scheme="http://yoursite.com/categories/Vue/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+    
+  </entry>
   
   <entry>
     <title>node.js之path模块</title>
