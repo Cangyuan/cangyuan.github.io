@@ -124,18 +124,18 @@
 
 
 
-<meta name="description" content="#第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下： 123456var merge = require(&apos;webpack-merge&apos;)var prodEnv = require(&apos;./prod.env&apos;)module.exports = merge(prodEnv,">
+<meta name="description" content="#vue2项目npm run build后将dist目录和index.html文件部署到本地服务器若出现访问空白时，找到config/index.js将assetsPublicPath:改为 ‘./‘重新编译就能显示页面了 #第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码">
 <meta name="keywords" content="js,vue,webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue+webpack为生产环境和发布环境配置不同的接口地址">
 <meta property="og:url" content="http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/index.html">
 <meta property="og:site_name" content="Orca&#39;s Notes">
-<meta property="og:description" content="#第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下： 123456var merge = require(&apos;webpack-merge&apos;)var prodEnv = require(&apos;./prod.env&apos;)module.exports = merge(prodEnv,">
+<meta property="og:description" content="#vue2项目npm run build后将dist目录和index.html文件部署到本地服务器若出现访问空白时，找到config/index.js将assetsPublicPath:改为 ‘./‘重新编译就能显示页面了 #第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-17T14:52:14.188Z">
+<meta property="og:updated_time" content="2017-12-17T15:14:36.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue+webpack为生产环境和发布环境配置不同的接口地址">
-<meta name="twitter:description" content="#第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下： 123456var merge = require(&apos;webpack-merge&apos;)var prodEnv = require(&apos;./prod.env&apos;)module.exports = merge(prodEnv,">
+<meta name="twitter:description" content="#vue2项目npm run build后将dist目录和index.html文件部署到本地服务器若出现访问空白时，找到config/index.js将assetsPublicPath:改为 ‘./‘重新编译就能显示页面了 #第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码">
 
 
 
@@ -445,7 +445,8 @@
       
 
       
-        <p>#第一步，分别设置不同的接口地址<br>首先，我们分别找到下面的文件：</p>
+        <p>#vue2项目npm run build后将dist目录和index.html文件部署到本地服务器<br>若出现访问空白时，找到config/index.js<br>将assetsPublicPath:改为 ‘./‘<br>重新编译就能显示页面了</p>
+<p>#第一步，分别设置不同的接口地址<br>首先，我们分别找到下面的文件：</p>
 <div class="note info"><p>/config/dev.env.js<br>/config/prod.env.js</p></div>
 <p>我们打开dev.en.js文件。代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
