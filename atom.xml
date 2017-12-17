@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-17T14:48:45.693Z</updated>
+  <updated>2017-12-17T15:03:10.538Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,22 +17,54 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>vue+webpack为生产环境和发布环境配置不同的接口地址</title>
-    <link href="http://yoursite.com/2017/12/17/vue-webpack%E4%B8%BA%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8F%91%E5%B8%83%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80/"/>
-    <id>http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/</id>
-    <published>2017-12-17T14:36:31.000Z</published>
-    <updated>2017-12-17T14:48:45.693Z</updated>
+    <title>如何用Github的gh-pages分支展示自己的项目</title>
+    <link href="http://yoursite.com/2017/12/17/%E5%A6%82%E4%BD%95%E7%94%A8Github%E7%9A%84gh-pages%E5%88%86%E6%94%AF%E5%B1%95%E7%A4%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%A1%B9%E7%9B%AE/"/>
+    <id>http://yoursite.com/2017/12/17/如何用Github的gh-pages分支展示自己的项目/</id>
+    <published>2017-12-17T14:55:31.000Z</published>
+    <updated>2017-12-17T15:03:10.538Z</updated>
     
-    <content type="html"><![CDATA[<p>#第一步，分别设置不同的接口地址<br>首先，我们分别找到下面的文件：</p><div class="note info"><p>/config/dev.env.js<br>/config/prod.env.js</p></div><p>我们打开dev.en.js文件。代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>然后，我们在NODE_ENV下面增加一项，代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//192.168.1.8/api"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>然后，我们编辑prod.env.js文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//www.baidu.com/api"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>#第二部，在代码中调用设置好的参数</p><p>打开src/config/api.js文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = <span class="string">'https://cnodejs.org/api/v1'</span></span><br></pre></td></tr></table></figure><p>修改为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = process.env.API_ROOT</span><br></pre></td></tr></table></figure><p>配置完成之后，运行下列代码,跑测试接口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure><p>然后运行下列代码，打包项目，打包后跑的是服务器正式接口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>通过git-add -A、git -commit -m “…” 命令把完成的项目上传到github上以后，默认的是处于master分支，你可以进该案例地址看看项目结构。接着我们要展现dist目录下的静态文件，那最关键的语句来了</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git subtree push --prefix=dist origin gh-pages</span><br></pre></td></tr></table></figure><p>意思就是把指定的dist文件提交到gh-pages分支上</p><p>这时候，我们看到已经多出了一个gh-pages分支，那么展示地址就是 Github用户名.github.io/创建的仓库名 拿我的这个案例来讲，它的展示地址就是<a href="https://cangyuan.github.io/sell" target="_blank" rel="noopener">仿饿了么演示</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;#第一步，分别设置不同的接口地址&lt;br&gt;首先，我们分别找到下面的文件：&lt;/p&gt;
-&lt;div class=&quot;note info&quot;&gt;&lt;p&gt;/config/dev.env.js&lt;br&gt;/config/prod.env.js&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;我们打开dev.en.js文件。
+        &lt;p&gt;通过git-add -A、git -commit -m “…” 命令把完成的项目上传到github上以后，默认的是处于master分支，你可以进该案例地址看看项目结构。接着我们要展现dist目录下的静态文件，那最关键的语句来了&lt;/p&gt;
+&lt;figure class=&quot;high
       
+    
+    </summary>
+    
+      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
+    
+    
+      <category term="github" scheme="http://yoursite.com/tags/github/"/>
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="gh-pages" scheme="http://yoursite.com/tags/gh-pages/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue+webpack为生产环境和发布环境配置不同的接口地址</title>
+    <link href="http://yoursite.com/2017/12/17/vue-webpack%E4%B8%BA%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8F%91%E5%B8%83%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80/"/>
+    <id>http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/</id>
+    <published>2017-12-17T14:36:31.000Z</published>
+    <updated>2017-12-17T14:52:14.188Z</updated>
+    
+    <content type="html"><![CDATA[<p>#第一步，分别设置不同的接口地址<br>首先，我们分别找到下面的文件：</p><div class="note info"><p>/config/dev.env.js<br>/config/prod.env.js</p></div><p>我们打开dev.en.js文件。代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>然后，我们在NODE_ENV下面增加一项，代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//192.168.1.8/api"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>然后，我们编辑prod.env.js文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//www.baidu.com/api"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><p>#第二部，在代码中调用设置好的参数</p><p>打开src/config/api.js文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = <span class="string">'https://cnodejs.org/api/v1'</span></span><br></pre></td></tr></table></figure><p>修改为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = process.env.API_ROOT</span><br></pre></td></tr></table></figure><p>配置完成之后，运行下列代码,跑测试接口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure><p>然后运行下列代码，打包项目，打包后跑的是服务器正式接口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#第一步，分别设置不同的接口地址&lt;br&gt;首先，我们分别找到下面的文件：&lt;/p&gt;
+&lt;div class=&quot;note info&quot;&gt;&lt;p&gt;/config/dev.env.js&lt;br&gt;/config/prod.env.js&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;我们打开dev.en.js文件。代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var merge = require(&lt;span class=&quot;string&quot;&gt;&#39;webpack-merge&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var prodEnv = require(&lt;span class=&quot;string&quot;&gt;&#39;./prod.env&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;module.exports = merge(prodEnv, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  NODE_ENV: &lt;span class=&quot;string&quot;&gt;&#39;&quot;development&quot;&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后，我们在NODE_ENV下面增加一项，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var merge = require(&lt;span class=&quot;string&quot;&gt;&#39;webpack-merge&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var prodEnv = require(&lt;span class=&quot;string&quot;&gt;&#39;./prod.env&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;module.exports = merge(prodEnv, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  NODE_ENV: &lt;span class=&quot;string&quot;&gt;&#39;&quot;development&quot;&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  API_ROOT: &lt;span class=&quot;string&quot;&gt;&#39;&quot;//192.168.1.8/api&quot;&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后，我们编辑prod.env.js文件&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;module.exports = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  NODE_ENV: &lt;span class=&quot;string&quot;&gt;&#39;&quot;production&quot;&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  API_ROOT: &lt;span class=&quot;string&quot;&gt;&#39;&quot;//www.baidu.com/api&quot;&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

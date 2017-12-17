@@ -132,7 +132,7 @@
 <meta property="og:site_name" content="Orca&#39;s Notes">
 <meta property="og:description" content="#第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下： 123456var merge = require(&apos;webpack-merge&apos;)var prodEnv = require(&apos;./prod.env&apos;)module.exports = merge(prodEnv,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-17T14:48:45.693Z">
+<meta property="og:updated_time" content="2017-12-17T14:52:14.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue+webpack为生产环境和发布环境配置不同的接口地址">
 <meta name="twitter:description" content="#第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下： 123456var merge = require(&apos;webpack-merge&apos;)var prodEnv = require(&apos;./prod.env&apos;)module.exports = merge(prodEnv,">
@@ -453,6 +453,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//192.168.1.8/api"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>然后，我们编辑prod.env.js文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//www.baidu.com/api"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>#第二部，在代码中调用设置好的参数</p>
 <p>打开src/config/api.js文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = <span class="string">'https://cnodejs.org/api/v1'</span></span><br></pre></td></tr></table></figure>
@@ -530,6 +531,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/12/17/如何用Github的gh-pages分支展示自己的项目/" rel="prev" title="如何用Github的gh-pages分支展示自己的项目">
+                如何用Github的gh-pages分支展示自己的项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -600,7 +605,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -611,7 +616,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -622,7 +627,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
