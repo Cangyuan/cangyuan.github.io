@@ -111,7 +111,7 @@
 
 
 
-  <meta name="keywords" content="js,vue,webpack," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -124,18 +124,18 @@
 
 
 
-<meta name="description" content="vue2项目npm run build后将dist目录和index.html文件部署到本地服务器若出现访问空白时，找到config/index.js将assetsPublicPath:改为 ‘./‘重新编译就能显示页面了 第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下">
-<meta name="keywords" content="js,vue,webpack">
+<meta name="description" content="懒加载与预加载的基本概念。  懒加载 :也叫延迟加载：前一篇文章有介绍：JS图片延迟加载 延迟加载图片或符合某些条件时才加载某些图片。   预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。  两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。  懒加载的意义及实现方式有：    意义： 懒加">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue+webpack为生产环境和发布环境配置不同的接口地址">
-<meta property="og:url" content="http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/index.html">
+<meta property="og:title" content="javascript图片懒加载与预加载的分析">
+<meta property="og:url" content="http://yoursite.com/2017/12/20/javascript图片懒加载与预加载的分析/index.html">
 <meta property="og:site_name" content="Orca&#39;s Notes">
-<meta property="og:description" content="vue2项目npm run build后将dist目录和index.html文件部署到本地服务器若出现访问空白时，找到config/index.js将assetsPublicPath:改为 ‘./‘重新编译就能显示页面了 第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下">
+<meta property="og:description" content="懒加载与预加载的基本概念。  懒加载 :也叫延迟加载：前一篇文章有介绍：JS图片延迟加载 延迟加载图片或符合某些条件时才加载某些图片。   预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。  两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。  懒加载的意义及实现方式有：    意义： 懒加">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T17:19:33.598Z">
+<meta property="og:updated_time" content="2017-12-19T19:22:18.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue+webpack为生产环境和发布环境配置不同的接口地址">
-<meta name="twitter:description" content="vue2项目npm run build后将dist目录和index.html文件部署到本地服务器若出现访问空白时，找到config/index.js将assetsPublicPath:改为 ‘./‘重新编译就能显示页面了 第一步，分别设置不同的接口地址首先，我们分别找到下面的文件： /config/dev.env.js/config/prod.env.js 我们打开dev.en.js文件。代码如下">
+<meta name="twitter:title" content="javascript图片懒加载与预加载的分析">
+<meta name="twitter:description" content="懒加载与预加载的基本概念。  懒加载 :也叫延迟加载：前一篇文章有介绍：JS图片延迟加载 延迟加载图片或符合某些条件时才加载某些图片。   预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。  两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。  懒加载的意义及实现方式有：    意义： 懒加">
 
 
 
@@ -165,13 +165,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/20/javascript图片懒加载与预加载的分析/"/>
 
 
 
 
 
-  <title>vue+webpack为生产环境和发布环境配置不同的接口地址 | Orca's Notes</title>
+  <title>javascript图片懒加载与预加载的分析 | Orca's Notes</title>
   
 
 
@@ -356,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/17/vue-webpack为生产环境和发布环境配置不同的接口地址/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/javascript图片懒加载与预加载的分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ORCA">
@@ -373,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vue+webpack为生产环境和发布环境配置不同的接口地址</h1>
+          <h1 class="post-title" itemprop="name headline">javascript图片懒加载与预加载的分析</h1>
         
 
         <div class="post-meta">
@@ -385,8 +385,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-17T22:36:31+08:00">
-                2017-12-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T03:04:40+08:00">
+                2017-12-20
               </time>
             
 
@@ -408,8 +408,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -445,26 +445,22 @@
       
 
       
-        <h1 id="vue2项目npm-run-build后将dist目录和index-html文件部署到本地服务器"><a href="#vue2项目npm-run-build后将dist目录和index-html文件部署到本地服务器" class="headerlink" title="vue2项目npm run build后将dist目录和index.html文件部署到本地服务器"></a>vue2项目npm run build后将dist目录和index.html文件部署到本地服务器</h1><p>若出现访问空白时，找到config/index.js<br>将assetsPublicPath:改为 ‘./‘<br>重新编译就能显示页面了</p>
-<h1 id="第一步，分别设置不同的接口地址"><a href="#第一步，分别设置不同的接口地址" class="headerlink" title="第一步，分别设置不同的接口地址"></a>第一步，分别设置不同的接口地址</h1><p>首先，我们分别找到下面的文件：</p>
-<div class="note info"><p>/config/dev.env.js<br>/config/prod.env.js</p></div>
-<p>我们打开dev.en.js文件。代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>然后，我们在NODE_ENV下面增加一项，代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var merge = require(<span class="string">'webpack-merge'</span>)</span><br><span class="line">var prodEnv = require(<span class="string">'./prod.env'</span>)</span><br><span class="line"></span><br><span class="line">module.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//192.168.1.8/api"'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>然后，我们编辑prod.env.js文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,</span><br><span class="line">  API_ROOT: <span class="string">'"//www.baidu.com/api"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="懒加载与预加载的基本概念。"><a href="#懒加载与预加载的基本概念。" class="headerlink" title="懒加载与预加载的基本概念。"></a>懒加载与预加载的基本概念。</h2><p>  懒加载 :也叫延迟加载：前一篇文章有介绍：JS图片延迟加载 延迟加载图片或符合某些条件时才加载某些图片。</p>
+<p>  预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。</p>
+<p> 两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。</p>
+<p> 懒加载的意义及实现方式有：</p>
+<p>   意义： 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数。</p>
+<p>   实现方式： </p>
+<div class="note info"><p>1.第一种是纯粹的延迟加载，使用setTimeOut或setInterval进行加载延迟.</p>
+<p>2.第二种是条件加载，符合某些条件，或触发了某些事件才开始异步下载。</p>
+<p>3.第三种是可视区加载，即仅加载用户可以看到的区域，这个主要由监控滚动条来实现，一般会在距用户看到某图片前一定距离遍开始加载，这样能保证用户拉下时正好能看到图片。</p></div>
+<p>  预加载的意义及实现方式有：</p>
+<pre><code>预加载可以说是牺牲服务器前端性能，换取更好的用户体验，这样可以使用户的操作得到最快的反映。实现预载的方法非常多，可以用CSS(background)、JS(Image)、HTML(&lt;img /&gt;)都可以。常用的是new Image();，设置其src来实现预载，再使用onload方法回调预载完成事件。只要浏览器把图片下载到本地，同样的src就会使用缓存，这是最基本也是最实用的预载方法。当Image下载完图片头后，会得到宽和高，因此可以在预载前得到图片的大小(方法是用记时器轮循宽高变化)。
+</code></pre><p>怎么样才能实现预加载？</p>
 <a id="more"></a>
-<p>#第二部，在代码中调用设置好的参数</p>
-<p>打开src/config/api.js文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = <span class="string">'https://cnodejs.org/api/v1'</span></span><br></pre></td></tr></table></figure>
-<p>修改为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置API接口地址</span><br><span class="line">var root = process.env.API_ROOT</span><br></pre></td></tr></table></figure>
-<p>配置完成之后，运行下列代码,跑测试接口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-<p>然后运行下列代码，打包项目，打包后跑的是服务器正式接口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> loadImage(url,callback) &#123;</span><br><span class="line">    var img = new Image();  </span><br><span class="line">    img.src = url;</span><br><span class="line">    <span class="keyword">if</span> (img.complete) &#123; // 如果图片已经存在于浏览器缓存，直接调用回调函数 防止IE6不执行onload BUG</span><br><span class="line">        callback.call(img);</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    img.onload = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        img.onload = null;</span><br><span class="line">        callback.call(img);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>懒加载：<br>当网页滚动的事件被触发 -&gt; 执行加载图片操作 -&gt; 判断图片是否在可视区域内 -&gt; 在，则动态将data-src的值赋予该图片。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">var aImages = document.getElementById(<span class="string">"SB"</span>).getElementsByTagName(<span class="string">'img'</span>); //获取id为SB的文档内所有的图片</span><br><span class="line">loadImg(aImages);</span><br><span class="line">window.onscroll = <span class="function"><span class="title">function</span></span>() &#123; //滚动条滚动触发</span><br><span class="line">loadImg(aImages);</span><br><span class="line">&#125;;</span><br><span class="line">//getBoundingClientRect 是图片懒加载的核心</span><br><span class="line"><span class="keyword">function</span> loadImg(arr) &#123;</span><br><span class="line"><span class="keyword">for</span>(var i = 0, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line"> <span class="keyword">if</span>(arr[i].getBoundingClientRect().top &lt; document.documentElement.clientHeight &amp;&amp; !arr[i].isLoad) &#123;</span><br><span class="line"> arr[i].isLoad = <span class="literal">true</span>; //图片显示标志位</span><br><span class="line"> //arr[i].style.cssText = <span class="string">"opacity: 0;"</span>;</span><br><span class="line"> (<span class="keyword">function</span>(i) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">  <span class="keyword">if</span>(arr[i].dataset) &#123; //兼容不支持data的浏览器</span><br><span class="line">   aftLoadImg(arr[i], arr[i].dataset.imgurl);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   aftLoadImg(arr[i], arr[i].getAttribute(<span class="string">"data-imgurl"</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  arr[i].style.cssText = <span class="string">"transition: 1s; opacity: 1;"</span> //相当于fadein</span><br><span class="line">  &#125;, 500)</span><br><span class="line"> &#125;)(i);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">function</span> aftLoadImg(obj, url) &#123;</span><br><span class="line">var oImg = new Image();</span><br><span class="line">oImg.onload = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line"> obj.src = oImg.src; //下载完成后将该图片赋给目标obj目标对象</span><br><span class="line">&#125;</span><br><span class="line">oImg.src = url; //oImg对象先下载该图像</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -505,11 +501,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
-          
-            <a href="/tags/vue/" rel="tag"># vue</a>
-          
-            <a href="/tags/webpack/" rel="tag"># webpack</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
         </div>
       
@@ -522,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/10/node-js之path模块解析/" rel="next" title="node.js之path模块">
-                <i class="fa fa-chevron-left"></i> node.js之path模块
+              <a href="/2017/12/20/JS实现快速排序/" rel="next" title="JS实现快速排序">
+                <i class="fa fa-chevron-left"></i> JS实现快速排序
               </a>
             
           </div>
@@ -532,8 +524,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/17/如何用Github的gh-pages分支展示自己的项目/" rel="prev" title="如何用Github的gh-pages分支展示自己的项目">
-                如何用Github的gh-pages分支展示自己的项目 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/20/冒泡排序、快速排序、去重、查找字符串最多值/" rel="prev" title="冒泡排序、快速排序、去重、查找字符串最多值">
+                冒泡排序、快速排序、去重、查找字符串最多值 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -693,7 +685,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue2项目npm-run-build后将dist目录和index-html文件部署到本地服务器"><span class="nav-number">1.</span> <span class="nav-text"><a href="#vue2&#x9879;&#x76EE;npm-run-build&#x540E;&#x5C06;dist&#x76EE;&#x5F55;&#x548C;index-html&#x6587;&#x4EF6;&#x90E8;&#x7F72;&#x5230;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;" class="headerlink" title="vue2&#x9879;&#x76EE;npm run build&#x540E;&#x5C06;dist&#x76EE;&#x5F55;&#x548C;index.html&#x6587;&#x4EF6;&#x90E8;&#x7F72;&#x5230;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;"></a>vue2&#x9879;&#x76EE;npm run build&#x540E;&#x5C06;dist&#x76EE;&#x5F55;&#x548C;index.html&#x6587;&#x4EF6;&#x90E8;&#x7F72;&#x5230;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一步，分别设置不同的接口地址"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x5206;&#x522B;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x5730;&#x5740;" class="headerlink" title="&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x5206;&#x522B;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x5730;&#x5740;"></a>&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x5206;&#x522B;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x5730;&#x5740;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#懒加载与预加载的基本概念。"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x61D2;&#x52A0;&#x8F7D;&#x4E0E;&#x9884;&#x52A0;&#x8F7D;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#x3002;" class="headerlink" title="&#x61D2;&#x52A0;&#x8F7D;&#x4E0E;&#x9884;&#x52A0;&#x8F7D;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#x3002;"></a>&#x61D2;&#x52A0;&#x8F7D;&#x4E0E;&#x9884;&#x52A0;&#x8F7D;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#x3002;</span></a></li></ol></div>
             
 
           </div>
