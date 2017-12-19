@@ -124,18 +124,18 @@
 
 
 
-<meta name="description" content="#1、方法定义 ##call方法:语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])定义：调用一个对象的一个方法，以另一个对象替换当前对象。说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作">
+<meta name="description" content="1、方法定义call方法:语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])定义：调用一个对象的一个方法，以另一个对象替换当前对象。说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作 this">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS中的call()和apply()方法">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/JS中的call-和apply-方法/index.html">
 <meta property="og:site_name" content="Orca&#39;s Notes">
-<meta property="og:description" content="#1、方法定义 ##call方法:语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])定义：调用一个对象的一个方法，以另一个对象替换当前对象。说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作">
+<meta property="og:description" content="1、方法定义call方法:语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])定义：调用一个对象的一个方法，以另一个对象替换当前对象。说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作 this">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T17:04:43.596Z">
+<meta property="og:updated_time" content="2017-12-19T17:08:52.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的call()和apply()方法">
-<meta name="twitter:description" content="#1、方法定义 ##call方法:语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])定义：调用一个对象的一个方法，以另一个对象替换当前对象。说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作">
+<meta name="twitter:description" content="1、方法定义call方法:语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])定义：调用一个对象的一个方法，以另一个对象替换当前对象。说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。如果没有提供 thisObj 参数，那么 Global 对象被用作 this">
 
 
 
@@ -445,21 +445,17 @@
       
 
       
-        <p>#1、方法定义</p>
-<p>##call方法:<br>语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])<br>定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
-<p>##apply方法：<br>语法：apply([thisObj[,argArray]])<br>定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br>说明：<br>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
-<p>#2、实例代码</p>
-<a id="more"></a>
-<p>##2.1<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a,b)  </span><br><span class="line">&#123;  </span><br><span class="line">    alert(a+b);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">function</span> sub(a,b)  </span><br><span class="line">&#123;  </span><br><span class="line">    alert(a-b);  </span><br><span class="line">&#125;  </span><br><span class="line">add.call(sub,3,1);</span><br></pre></td></tr></table></figure></p>
+        <h1 id="1、方法定义"><a href="#1、方法定义" class="headerlink" title="1、方法定义"></a>1、方法定义</h1><h2 id="call方法"><a href="#call方法" class="headerlink" title="call方法:"></a>call方法:</h2><p>语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])<br>定义：调用一个对象的一个方法，以另一个对象替换当前对象。<br>说明：<br>call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 </p>
+<h2 id="apply方法："><a href="#apply方法：" class="headerlink" title="apply方法："></a>apply方法：</h2><p>语法：apply([thisObj[,argArray]])<br>定义：应用某一对象的一个方法，用另一个对象替换当前对象。<br>说明：<br>如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。</p>
+<h1 id="2、实例代码"><a href="#2、实例代码" class="headerlink" title="2、实例代码"></a>2、实例代码</h1><a id="more"></a>
+<h2 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a,b)  </span><br><span class="line">&#123;  </span><br><span class="line">    alert(a+b);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">function</span> sub(a,b)  </span><br><span class="line">&#123;  </span><br><span class="line">    alert(a-b);  </span><br><span class="line">&#125;  </span><br><span class="line">add.call(sub,3,1);</span><br></pre></td></tr></table></figure>
 <p>这个例子中的意思就是用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4); // 注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。</p>
-<p>##2.2</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Animal</span></span>()&#123;    </span><br><span class="line">    this.name = <span class="string">"Animal"</span>;    </span><br><span class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;    </span><br><span class="line">        alert(this.name);    </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;    </span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Cat</span></span>()&#123;    </span><br><span class="line">    this.name = <span class="string">"Cat"</span>;    </span><br><span class="line">&#125;    </span><br><span class="line">   </span><br><span class="line">var animal = new Animal();    </span><br><span class="line">var cat = new Cat();    </span><br><span class="line">    </span><br><span class="line">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </span><br><span class="line">//输入结果为<span class="string">"Cat"</span>    </span><br><span class="line">animal.showName.call(cat,<span class="string">","</span>);    </span><br><span class="line">//animal.showName.apply(cat,[]);</span><br></pre></td></tr></table></figure>
+<h2 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Animal</span></span>()&#123;    </span><br><span class="line">    this.name = <span class="string">"Animal"</span>;    </span><br><span class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;    </span><br><span class="line">        alert(this.name);    </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;    </span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Cat</span></span>()&#123;    </span><br><span class="line">    this.name = <span class="string">"Cat"</span>;    </span><br><span class="line">&#125;    </span><br><span class="line">   </span><br><span class="line">var animal = new Animal();    </span><br><span class="line">var cat = new Cat();    </span><br><span class="line">    </span><br><span class="line">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </span><br><span class="line">//输入结果为<span class="string">"Cat"</span>    </span><br><span class="line">animal.showName.call(cat,<span class="string">","</span>);    </span><br><span class="line">//animal.showName.apply(cat,[]);</span><br></pre></td></tr></table></figure>
 <p> call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat</p>
 <p> ##2.3实现继承</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> Animal(name)&#123;      </span><br><span class="line">    this.name = name;      </span><br><span class="line">    this.showName = <span class="function"><span class="title">function</span></span>()&#123;      </span><br><span class="line">        alert(this.name);      </span><br><span class="line">    &#125;      </span><br><span class="line">&#125;          </span><br><span class="line"><span class="keyword">function</span> Cat(name)&#123;    </span><br><span class="line">    Animal.call(this, name);    </span><br><span class="line">&#125;         </span><br><span class="line">var cat = new Cat(<span class="string">"Black Cat"</span>);     </span><br><span class="line">cat.showName();</span><br></pre></td></tr></table></figure>
 <p> Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了.</p>
-<p> #关于apply()用法</p>
- <div class="note info"><p>foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments)</p></div>
+<h1 id="关于apply-用法"><a href="#关于apply-用法" class="headerlink" title="关于apply()用法"></a>关于apply()用法</h1> <div class="note info"><p>foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments)</p></div>
 
       
     </div>
@@ -574,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -662,6 +667,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、方法定义"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1&#x3001;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;" class="headerlink" title="1&#x3001;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;"></a>1&#x3001;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#call方法"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#call&#x65B9;&#x6CD5;" class="headerlink" title="call&#x65B9;&#x6CD5;:"></a>call&#x65B9;&#x6CD5;:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apply方法："><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#apply&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="apply&#x65B9;&#x6CD5;&#xFF1A;"></a>apply&#x65B9;&#x6CD5;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、实例代码"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2&#x3001;&#x5B9E;&#x4F8B;&#x4EE3;&#x7801;" class="headerlink" title="2&#x3001;&#x5B9E;&#x4F8B;&#x4EE3;&#x7801;"></a>2&#x3001;&#x5B9E;&#x4F8B;&#x4EE3;&#x7801;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于apply-用法"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5173;&#x4E8E;apply-&#x7528;&#x6CD5;" class="headerlink" title="&#x5173;&#x4E8E;apply()&#x7528;&#x6CD5;"></a>&#x5173;&#x4E8E;apply()&#x7528;&#x6CD5;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
