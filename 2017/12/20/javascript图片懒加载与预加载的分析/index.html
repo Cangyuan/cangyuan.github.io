@@ -132,7 +132,7 @@
 <meta property="og:site_name" content="Orca&#39;s Notes">
 <meta property="og:description" content="懒加载与预加载的基本概念。  懒加载 :也叫延迟加载：前一篇文章有介绍：JS图片延迟加载 延迟加载图片或符合某些条件时才加载某些图片。   预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。  两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。  懒加载的意义及实现方式有：    意义： 懒加">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T19:22:18.463Z">
+<meta property="og:updated_time" content="2017-12-19T19:28:13.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript图片懒加载与预加载的分析">
 <meta name="twitter:description" content="懒加载与预加载的基本概念。  懒加载 :也叫延迟加载：前一篇文章有介绍：JS图片延迟加载 延迟加载图片或符合某些条件时才加载某些图片。   预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。  两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。  懒加载的意义及实现方式有：    意义： 懒加">
@@ -455,8 +455,8 @@
 <p>2.第二种是条件加载，符合某些条件，或触发了某些事件才开始异步下载。</p>
 <p>3.第三种是可视区加载，即仅加载用户可以看到的区域，这个主要由监控滚动条来实现，一般会在距用户看到某图片前一定距离遍开始加载，这样能保证用户拉下时正好能看到图片。</p></div>
 <p>  预加载的意义及实现方式有：</p>
-<pre><code>预加载可以说是牺牲服务器前端性能，换取更好的用户体验，这样可以使用户的操作得到最快的反映。实现预载的方法非常多，可以用CSS(background)、JS(Image)、HTML(&lt;img /&gt;)都可以。常用的是new Image();，设置其src来实现预载，再使用onload方法回调预载完成事件。只要浏览器把图片下载到本地，同样的src就会使用缓存，这是最基本也是最实用的预载方法。当Image下载完图片头后，会得到宽和高，因此可以在预载前得到图片的大小(方法是用记时器轮循宽高变化)。
-</code></pre><p>怎么样才能实现预加载？</p>
+<p>  预加载可以说是牺牲服务器前端性能，换取更好的用户体验，这样可以使用户的操作得到最快的反映。实现预载的方法非常多，可以用CSS(background)、JS(Image)、HTML(<img>)都可以。常用的是new Image();，设置其src来实现预载，再使用onload方法回调预载完成事件。只要浏览器把图片下载到本地，同样的src就会使用缓存，这是最基本也是最实用的预载方法。当Image下载完图片头后，会得到宽和高，因此可以在预载前得到图片的大小(方法是用记时器轮循宽高变化)。</p>
+<p>怎么样才能实现预加载？</p>
 <a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> loadImage(url,callback) &#123;</span><br><span class="line">    var img = new Image();  </span><br><span class="line">    img.src = url;</span><br><span class="line">    <span class="keyword">if</span> (img.complete) &#123; // 如果图片已经存在于浏览器缓存，直接调用回调函数 防止IE6不执行onload BUG</span><br><span class="line">        callback.call(img);</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    img.onload = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        img.onload = null;</span><br><span class="line">        callback.call(img);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>懒加载：<br>当网页滚动的事件被触发 -&gt; 执行加载图片操作 -&gt; 判断图片是否在可视区域内 -&gt; 在，则动态将data-src的值赋予该图片。</p>
@@ -607,7 +607,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -618,7 +618,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -629,7 +629,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
