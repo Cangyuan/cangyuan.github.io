@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-13T05:08:13.675Z</updated>
+  <updated>2018-07-13T05:19:34.957Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo发布博客教程</title>
+    <link href="http://yoursite.com/2018/07/13/hexo%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B-3/"/>
+    <id>http://yoursite.com/2018/07/13/hexo发布博客教程-3/</id>
+    <published>2018-07-13T05:19:34.000Z</published>
+    <updated>2018-07-13T05:19:34.957Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>hexo发布博客教程</title>
@@ -532,32 +546,6 @@
       <category term="node" scheme="http://yoursite.com/tags/node/"/>
     
       <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git添加远程库github</title>
-    <link href="http://yoursite.com/2017/12/10/git%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93github/"/>
-    <id>http://yoursite.com/2017/12/10/git添加远程库github/</id>
-    <published>2017-12-10T12:22:32.000Z</published>
-    <updated>2017-12-11T08:07:32.567Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：</p><p><img src="/imgs/git-02.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p><p>在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：</p><a id="more"></a><p><img src="/imgs/git-03.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p><p>目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</p><p>现在，我们根据GitHub的提示，在本地的learngit仓库下运行命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:yourname/learngit.git</span><br></pre></td></tr></table></figure><p>请千万注意，把上面的michaelliao替换成你自己的GitHub账户名，否则，你在本地关联的就是我的远程库，关联没有问题，但是你以后推送是推不上去的，因为你的SSH Key公钥不在我的账户列表中。</p><p>添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。</p><p>下一步，就可以把本地库的所有内容推送到远程库上：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br><span class="line">Counting objects: 19, <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (19/19), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (19/19), 13.73 KiB, <span class="keyword">done</span>.</span><br><span class="line">Total 23 (delta 6), reused 0 (delta 0)</span><br><span class="line">To git@github.com:michaelliao/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch master <span class="built_in">set</span> up to track remote branch master from origin.</span><br></pre></td></tr></table></figure><p>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。</p><p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p><p>推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样：</p><p><img src="/imgs/git-03.png" style="width: 100%;height: 100%" alt="git-01" align="center"></p><p>从现在起，只要本地作了提交，就可以通过命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure><p>把本地master分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库！</p><h2 id="SSH警告"><a href="#SSH警告" class="headerlink" title="SSH警告"></a>SSH警告</h2><p>当你第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">'github.com (xx.xx.xx.xx)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is xx.xx.xx.xx.xx.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure><p>这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入yes回车即可。</p><p>Git会输出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: Permanently added <span class="string">'github.com'</span> (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure><p>这个警告只会出现一次，后面的操作就不会有任何警告了。</p><p>如果你实在担心有人冒充GitHub服务器，输入yes前可以对照GitHub的RSA Key的指纹信息是否与SSH连接给出的一致。</p><p>小结</p><p>要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；</p><p>关联后，使用命令git push -u origin master第一次推送master分支的所有内容；</p><p>此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；</p><p>分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/imgs/git-02.png&quot; style=&quot;width: 100%;height: 100%&quot; alt=&quot;git-01&quot; align=&quot;center&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在Repository name填入learngit，其他保持默认设置，点击“Create repository”按钮，就成功地创建了一个新的Git仓库：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="版本管理" scheme="http://yoursite.com/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
-    
-    
-      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
-    
-      <category term="版本管理" scheme="http://yoursite.com/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
